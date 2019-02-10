@@ -1,0 +1,27 @@
+<h1>Candidates</h1>
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>E-mail</th>
+        <th>Phone</th>
+        <th>Job</th>
+        <th>Application Date</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @candidate.each do |candidate| %>
+      <tr>
+        <th><%= candidate.Name %></th>
+        <th><%= candidate.E_mail %></th>
+        <th><%= candidate.Phone %></th>
+        <th><%= candidate.Job %></th>
+        <th><%= candidate.Created_at %></th>
+        <th><%= candidate.Note %></th>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
