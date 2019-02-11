@@ -7,7 +7,16 @@ task candidates: :environment do
   filepath_note_csv = 'data/Import task - Notes.csv'
   filepath_final_csv = 'data/Final.csv'
 
-  new_candidates = CSV.read(filepath_candidates_csv, headers: true).reject { |r| !r[1].include?("applicant") }.uniq { |x| x.first }
+    candidates_fixed_phone = CSV.read(filepath_candidates_csv, headers: true).each do |array|
+      if
+        array[1].match(/\d{10}/) || array[1].match(/\d{10}/)
+        array[2] = array[1]
+        array[1] = ""
+    end
+  end
+
+  # new_candidates = CSV.read(filepath_candidates_csv, headers: true).reject { |r| !r[1].include?("applicant") || r[1].include?("") }.uniq { |x| x.first }
+  new_candidates = candidates_fixed_phone.reject { |r| r[1].include?("hello") }.uniq { |x| x.first }
   new_notes = CSV.read(filepath_note_csv, headers: true).uniq { |x| x.first }
 
   new_candidates_hash = new_candidates.each.map { |row|  {
